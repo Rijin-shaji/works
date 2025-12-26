@@ -1,0 +1,33 @@
+// ER Diagram
+digraph {
+	rankdir=LR
+	dpi=300
+	delivery_hub [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD><b>delivery_hub</b></TD></TR><TR><TD ALIGN='LEFT'><b>hub_id : int</b></TD></TR><TR><TD ALIGN='LEFT'>hub_name : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>address : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>pin : int</TD></TR><TR><TD ALIGN='LEFT'>phone : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>user_no : int</TD></TR><TR><TD ALIGN='LEFT'>product_no : int</TD></TR></TABLE>> shape=plaintext]
+	issue [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD><b>issue</b></TD></TR><TR><TD ALIGN='LEFT'><b>issue_id : int</b></TD></TR><TR><TD ALIGN='LEFT'>user_id : int</TD></TR><TR><TD ALIGN='LEFT'>product_id : int</TD></TR><TR><TD ALIGN='LEFT'>seller_id : int</TD></TR><TR><TD ALIGN='LEFT'>issue_type : varchar(200)</TD></TR><TR><TD ALIGN='LEFT'>issue_describe : varchar(250)</TD></TR><TR><TD ALIGN='LEFT'>issue_status : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>raised_date : date</TD></TR></TABLE>> shape=plaintext]
+	payment [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD><b>payment</b></TD></TR><TR><TD ALIGN='LEFT'><b>payment_id : int</b></TD></TR><TR><TD ALIGN='LEFT'>user_id : int</TD></TR><TR><TD ALIGN='LEFT'>delivery_id : int</TD></TR><TR><TD ALIGN='LEFT'>amount : decimal(10,2)</TD></TR><TR><TD ALIGN='LEFT'>payment_method : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>payment_status : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>seller_id : int</TD></TR></TABLE>> shape=plaintext]
+	platforms [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD><b>platforms</b></TD></TR><TR><TD ALIGN='LEFT'><b>platform_id : int</b></TD></TR><TR><TD ALIGN='LEFT'>platform_name : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>seller_id : int</TD></TR><TR><TD ALIGN='LEFT'>product_id : int</TD></TR></TABLE>> shape=plaintext]
+	product [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD><b>product</b></TD></TR><TR><TD ALIGN='LEFT'>name : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>brand : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'><b>product_id : int</b></TD></TR><TR><TD ALIGN='LEFT'>real_price : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>discount_price : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>stock_quantity : int</TD></TR><TR><TD ALIGN='LEFT'>product_type : varchar(100)</TD></TR><TR><TD ALIGN='LEFT'>payment_id : int</TD></TR><TR><TD ALIGN='LEFT'>product_status : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>Rev_id : int</TD></TR><TR><TD ALIGN='LEFT'>iss_id : int</TD></TR><TR><TD ALIGN='LEFT'>user_id : int</TD></TR><TR><TD ALIGN='LEFT'>seller_id : int</TD></TR></TABLE>> shape=plaintext]
+	review [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD><b>review</b></TD></TR><TR><TD ALIGN='LEFT'><b>review_id : int</b></TD></TR><TR><TD ALIGN='LEFT'>user_id : int</TD></TR><TR><TD ALIGN='LEFT'>product_id : int</TD></TR><TR><TD ALIGN='LEFT'>seller_id : int</TD></TR><TR><TD ALIGN='LEFT'>rating : int</TD></TR><TR><TD ALIGN='LEFT'>review_text : varchar(255)</TD></TR><TR><TD ALIGN='LEFT'>review_date : date</TD></TR></TABLE>> shape=plaintext]
+	seller [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD><b>seller</b></TD></TR><TR><TD ALIGN='LEFT'>name : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>dob : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>number : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'><b>sid : int</b></TD></TR><TR><TD ALIGN='LEFT'>email : varchar(100)</TD></TR><TR><TD ALIGN='LEFT'>password : varchar(150)</TD></TR><TR><TD ALIGN='LEFT'>gender : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>nationality : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>address : varchar(150)</TD></TR><TR><TD ALIGN='LEFT'>shop_name : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>gst_no : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>p_id : int</TD></TR><TR><TD ALIGN='LEFT'>pay_id : int</TD></TR></TABLE>> shape=plaintext]
+	user [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD><b>user</b></TD></TR><TR><TD ALIGN='LEFT'>name : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>dob : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>number : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'><b>usid : int</b></TD></TR><TR><TD ALIGN='LEFT'>email : varchar(100)</TD></TR><TR><TD ALIGN='LEFT'>password : varchar(150)</TD></TR><TR><TD ALIGN='LEFT'>gender : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>nationality : varchar(50)</TD></TR><TR><TD ALIGN='LEFT'>address : varchar(150)</TD></TR></TABLE>> shape=plaintext]
+	delivery_hub -> product [label=product_no]
+	delivery_hub -> user [label=user_no]
+	issue -> user [label=user_id]
+	payment -> delivery_hub [label=delivery_id]
+	payment -> seller [label=seller_id]
+	payment -> user [label=user_id]
+	platforms -> product [label=product_id]
+	platforms -> seller [label=seller_id]
+	product -> issue [label=iss_id]
+	product -> payment [label=payment_id]
+	product -> review [label=Rev_id]
+	product -> seller [label=seller_id]
+	product -> user [label=user_id]
+	review -> product [label=product_id]
+	review -> product [label=product_id]
+	review -> seller [label=seller_id]
+	review -> seller [label=seller_id]
+	review -> user [label=user_id]
+	seller -> payment [label=pay_id]
+	seller -> product [label=p_id]
+}

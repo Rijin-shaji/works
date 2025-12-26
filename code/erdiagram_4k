@@ -1,0 +1,34 @@
+// ER Diagram
+digraph {
+	rankdir=LR
+	size="20,20"
+	dpi=300
+	delivery_hub [label=delivery_hub]
+	issue [label=issue]
+	payment [label=payment]
+	platforms [label=platforms]
+	product [label=product]
+	review [label=review]
+	seller [label=seller]
+	user [label=user]
+	delivery_hub -> product [label=product_no]
+	delivery_hub -> user [label=user_no]
+	issue -> user [label=user_id]
+	payment -> delivery_hub [label=delivery_id]
+	payment -> seller [label=seller_id]
+	payment -> user [label=user_id]
+	platforms -> product [label=product_id]
+	platforms -> seller [label=seller_id]
+	product -> issue [label=iss_id]
+	product -> payment [label=payment_id]
+	product -> review [label=Rev_id]
+	product -> seller [label=seller_id]
+	product -> user [label=user_id]
+	review -> product [label=product_id]
+	review -> product [label=product_id]
+	review -> seller [label=seller_id]
+	review -> seller [label=seller_id]
+	review -> user [label=user_id]
+	seller -> payment [label=pay_id]
+	seller -> product [label=p_id]
+}
