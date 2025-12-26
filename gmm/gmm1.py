@@ -1,44 +1,33 @@
-# Import libraries
 import pandas as pd
 import numpy as np
 from sklearn.mixture import GaussianMixture
-from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
-from sklearn.datasets import load_breast_cancer
 
-# Load breast cancer dataset
-df = pd.read_excel("F:/Date_Fruit_Datasets.xlsx")
 
-X = df[[ 'AREA', 'PERIMETER', 'MAJOR_AXIS', 'MINOR_AXIS', 'ECCENTRICITY', 'EQDIASQ', 'SOLIDITY', 'CONVEX_AREA', 'EXTENT', 'ASPECT_RATIO', 'ROUNDNESS', 'COMPACTNESS', 'SHAPEFACTOR_1', 'SHAPEFACTOR_2', 'SHAPEFACTOR_3', 'SHAPEFACTOR_4', 'MeanRR', 'MeanRG', 'MeanRB', 'StdDevRR', 'StdDevRG', 'StdDevRB', 'SkewRR', 'SkewRG', 'SkewRB', 'KurtosisRR', 'KurtosisRG', 'KurtosisRB', 'EntropyRR', 'EntropyRG', 'EntropyRB', 'ALLdaub4RR', 'ALLdaub4RG', 'ALLdaub4RB']]
-y = df['Class']                
+df = pd.read_csv("F:/data.csv", encoding='latin-1')
 
-# -----------------------------
-# Step 3: Fit GMM
-# -----------------------------
+X = df[[ 'radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean',
+        'smoothness_mean', 'compactness_mean', 'concavity_mean', 'concave points_mean',
+        'symmetry_mean', 'fractal_dimension_mean']]
+y = df['diagnosis']
+
+y = y.map({'M': 1, 'B': 0})
+
+
 n_components = 3
 gmm = GaussianMixture(n_components=n_components, random_state=42)
 gmm.fit(X)
 
-labels = gmm.predict(X)        # Cluster labels
-probs = gmm.predict_proba(X)   # Soft clustering probabilities
-plt.figure(figsize=(8, 6))
 
-# scatter points colored by hard labels
-plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis', s=50, edgecolor='k')
+labels = gmm.predict(X)
+probs = gmm.predict_proba(X)  
 
-# plot Gaussian centers
-plt.scatter(
-    gmm.means_[:, 0],
-    gmm.means_[:, 1],
-    s=300,
-    c='red',
-    marker='X',
-    label='Centers'
-)
+df['Cluster'] = labels
+print(df.head())
 
-plt.title("Gaussian Mixture Model Clustering")
-plt.xlabel("Feature 1")
-plt.ylabel("Feature 2")
-plt.grid(True)
-plt.legend()
+plt.figure(figsize=(8,6))
+plt.scatter(X[:,0], X[:,1], c=labels, cmap='viridis', s=50)
+plt.title('GMM Clustering')
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
 plt.show()
