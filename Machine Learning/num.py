@@ -1,0 +1,102 @@
+import numpy as np
+x=np.array('h')
+y=np.array([5,8,9])
+y1=np.array([1,2,3])
+z=np.array([[[6,5,7],
+            [1,9,4],
+            [5,8,6]]])
+a=np.array([[[1,2,3],[4,5,6]],
+            [[7,8,9],[10,11,12]]])
+a1=np.array([[7],[8],[9]])
+
+# print(x)
+# print(y)
+# print(z)
+# print(a)
+# print(x.ndim)
+# print(y.ndim)
+# print(z.ndim)
+# print(a.ndim)
+# print(x.shape)
+# print(y.shape)
+# print(z.shape)
+# print(a.shape)
+# print(x.size)
+# print(y.size)
+# print(z.size)
+# print(a.size)
+
+b=np.arange(5)
+#print(b)
+c=np.linspace(0,1)
+#print(c)
+d=np.zeros(((2,3,3)))
+#print(d)
+e=np.ones(((2,3,3)))
+#print(e)
+f=np.eye(4)
+#print(f)
+g=np.random.rand(2,2,3)
+#print(g)
+np.random.seed(42)
+h=np.random.randint(1,10,(2,3,2))
+#print(h)
+i=np.random.randn(2,2,3)
+#print(i)
+#j=z.reshape(3,2)
+#print(j)
+k=a.flatten()
+#print(k)
+l=y.sum()
+m=np.sum(z[0:1,0:1])# take s the sum
+n=a.sum()
+# print(l)
+# print(m)
+# print(n)
+o=y.mean()
+p=z.mean()
+q=np.mean(a[1,1]) # it will find the mean 
+# print(o)
+# print(p)
+# print(q)
+#r=np.dot(y,k)
+#s=np.dot(z,j)
+#t=np.dot(a)
+#print(s)
+#t=np.dot(j,z)
+#print(t)
+#print(r)
+u=np.dot(a,h)  # it will multiply matrixes
+#print(u)
+#v=np.matmul(z,j)
+#print(v)
+w=np.random.choice([1,2,3,4])  #it will choose random number from the list
+#print(w)
+#print(np.sort(y))   # it will arrange the numbers in the correct order
+#print(np.sort(z))
+#print(np.unique(y))  # it will remove the repeating numbers
+#print(np.unique(z))
+#print(y[0:4:-1])       # it will find using the index number (slicing)
+#print(z[0,2])    / print(z[0][0])    #indexing
+#print(z[0:2,1:2])          #slicing(first row and 2nd column)
+# print(y+y1)
+# print(y-y1)
+# print(y*y1)
+# print(y/y1)
+# print(y**2)
+# print(np.vstack((y,y1)))   #it will convert to a matrix
+# print(np.hstack((y,y1)))   #it will convert to a list
+# arr=np.hstack((y,y1))
+# print(np.split(arr,4))
+# c1=y1+a1   #Broadcasting method
+# print(c1)
+# print([(z<4)|(z>6)])  # Boolean filtering
+# print(z[(z<4)|(z>6)])
+# print(np.where(z<3,z,0)) # where filtering
+# print(np.sum(a,axis=0))  #using axis operation
+# print(np.sum(a,axis=1))
+# print(np.sum(a,axis=2))
+#print(z.T)
+#print(np.transpose(z))
+#print(np.linalg.det(z))
+#print(np.linalg.inv(z))

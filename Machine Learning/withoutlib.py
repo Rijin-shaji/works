@@ -1,0 +1,15 @@
+x = [2600,3000,3200,3600,4000]
+y = [550000,565000,610000,680000,725000]
+n = len(x)
+sum_x = sum(x)
+sum_y = sum(y)
+sum_xy = sum([x[i]*y[i] for i in range(n)])
+sum_x2 = sum([x[i]**2 for i in range(n)])
+m = (n*sum_xy - sum_x*sum_y) / (n*sum_x2 - sum_x**2)
+c = (sum_y - m*sum_x) / n
+SSE= sum([(y[i] - (m*x[i] + c))**2 for i in range(n)])
+SST= sum([(y[i] - (sum_y/n))**2 for i in range(n)])
+R2= 1 - (SSE/SST)
+print(f"R2 = {R2}")
+print(f"Slope (m) = {m}")
+print(f"Intercept (c) = {c}")
